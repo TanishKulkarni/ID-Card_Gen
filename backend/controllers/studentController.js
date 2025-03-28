@@ -3,10 +3,10 @@ const Student = require("../models/Student");
 // ✅ Add a Student (Handles Missing Photo Properly)
 exports.addStudent = async (req, res) => {
   try {
-    const { prn, name, department, email, phone } = req.body;
+    const { prn, name, department, email, phone, photo } = req.body;
 
     // Validate required fields
-    if (!prn || !name || !department || !email || !phone) {
+    if (!prn || !name || !department || !email || !phone || !photo) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -15,10 +15,6 @@ exports.addStudent = async (req, res) => {
     if (existingStudent) {
       return res.status(400).json({ error: "Student with this PRN or Email already exists" });
     }
-
-    // Handle file upload safely (photo is optional)
-    const photo = req.file ? req.file.path : null;
-
     // Create new student entry
     const newStudent = new Student({ prn, name, department, email, phone, photo });
     await newStudent.save();
