@@ -12,11 +12,12 @@ POST {{URL}}/students/
 Content-Type: application/json
 
 {
-    "prn":"27468854",
-    "name":"roohi",
-    "department":"cs",
-    "email":"roohi@gmail.com",
-    "phone":"9773887377",
+    "prn":"22311908",
+    "name":"Rashmi Apte",
+    "department":"Computer Science",
+    "university":"SPPU",
+    "email":"rashmiapte1@gmail.com",
+    "phone":"9523532366",
     "photo":"https://robohash.org/8ebacdfb1779b6c51989bfb08659a7b1?set=set4&bgset=&size=400x400"
 }
 
@@ -30,6 +31,7 @@ Content-Type: application/json
     "prn": "21910718",
     "name": "prerna",
     "department": "cs",
+    "university":"SPPU",
     "email": "prernaphadnis6@gmail.com",
     "phone": "9176565672",
     "photo":"https://robohash.org/8ebacdfb1779b6c51989bfb08659a7b1?set=set4&bgset=&size=100x100"

@@ -3,10 +3,10 @@ const Student = require("../models/Student");
 // ✅ Add a Student (Handles Missing Photo Properly)
 exports.addStudent = async (req, res) => {
   try {
-    const { prn, name, department, email, phone, photo } = req.body;
+    const { prn, name, department, university, email, phone, photo } = req.body;
 
     // Validate required fields
-    if (!prn || !name || !department || !email || !phone || !photo) {
+    if (!prn || !name || !department || !university || !email || !phone || !photo) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -16,7 +16,7 @@ exports.addStudent = async (req, res) => {
       return res.status(400).json({ error: "Student with this PRN or Email already exists" });
     }
     // Create new student entry
-    const newStudent = new Student({ prn, name, department, email, phone, photo });
+    const newStudent = new Student({ prn, name, department, university, email, phone, photo });
     await newStudent.save();
 
     res.status(201).json({ message: "Student Added Successfully", student: newStudent });
@@ -70,21 +70,5 @@ exports.deleteStudent = async (req, res) => {
   } catch (error) {
     console.error("Error in deleteStudent:", error);
     res.status(500).json({ error: "Failed to Delete Student", details: error.message });
-  }
-};
-
-// ✅ Generate Student ID Card (PDF)
-const generateIDCard = require("../utils/generateIDCard");
-
-exports.generateIDCard = async (req, res) => {
-  try {
-    const student = await Student.findOne({ prn: req.params.prn });
-    if (!student) return res.status(404).json({ error: "Student Not Found" });
-
-    generateIDCard(student);
-    res.json({ message: "ID Card Generated Successfully" });
-  } catch (error) {
-    console.error("Error in generateIDCard:", error);
-    res.status(500).json({ error: "Failed to Generate ID Card", details: error.message });
   }
 };
