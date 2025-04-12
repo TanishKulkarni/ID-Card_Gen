@@ -1,15 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import './App.css'
+import Sidebar from "./components/Sidebar/Sidebar";
+import Create from "./components/Create/Create";
+import Search from "./components/Search/Search";
 
-function App() {
-  
-
+const App = () => {
   return (
-    <>
-      <h1>prerna</h1>
-     
-    </>
-  )
-}
+    <Router>
+      <Sidebar />
+      <Routes>
+        <Route path="/search" element={<Search />} />
+        <Route path="/create" element={<Create />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
